@@ -1,0 +1,22 @@
+{
+  "name": "node_tree",
+  "version": "1.0.0",
+  "description": "node实现linux下Tree命令",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zzzs/node-tree.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zzzs/node-tree/issues"
+  },
+  "homepage": "https://github.com/zzzs/node-tree#readme",
+  "devDependencies": {
+    "cli-color": "^1.2.0"
+  }
+}
