@@ -1,6 +1,8 @@
 /*
     实现Linux tree -L功能, 另外支持可展示任意目录的目录树
-    node index.js -L 1 ./xxx
+    node index.js -L [level] [dir]
+    level: 展示目录级数, 默认0, 展示所有
+    dir: 展示的目录, 默认'.', 当前展示目录
  */
 const fs = require('fs');
 
@@ -13,8 +15,8 @@ var params = process.argv.splice(2);
 let level = 0;
 if (params[1]) {
     level = parseInt(params[1]);
-    if (isNaN(level) || level <= 0) {
-        console.log('tree: Invalid level, must be greater than 0.');
+    if (isNaN(level) || level < 0) {
+        console.log('tree: Invalid level, must be greater than or equal 0.');
         return;
     }
 }
@@ -45,7 +47,6 @@ let getPreStr = function (pNode) {
             str += '│   ';
         }
     }
-
     return str;
 }
 
