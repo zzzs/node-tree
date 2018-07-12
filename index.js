@@ -6,10 +6,10 @@
  */
 const fs = require('fs');
 
-var clc = require('cli-color');
-var dirStyle = clc.xterm(18).bgXterm(29);
+const clc = require('cli-color');
+const dirStyle = clc.xterm(18).bgXterm(29);
 
-var params = process.argv.splice(2);
+const params = process.argv.splice(2);
 
 // 展示层级 默认0（展示所有）
 let level = 0;
@@ -22,10 +22,7 @@ if (params[1]) {
 }
 
 // 展示的目录 默认当前
-let showDir = '.'
-if (params[2]) {
-    showDir = params[2];
-}
+let showDir = params[2] || '.';
 
 // 父级节点
 let pNodeData = {};
@@ -38,7 +35,7 @@ let fileNum = 0;
 
 // 计算节点前的字符
 let getPreStr = function (pNode) {
-    let num = pNode.length;
+    const num = pNode.length;
     let str = '';
     for (var i = 1; i <= num - 1; i++) {
         if (lastNodeData.indexOf(pNode[i]) >= 0) {
@@ -50,15 +47,15 @@ let getPreStr = function (pNode) {
     return str;
 }
 
-let outputTree = function (dirname, isOneLevel) {
+const outputTree = function (dirname, isOneLevel) {
     if (isOneLevel) {
         console.log(dirStyle(dirname));
     }
-    let files = fs.readdirSync(dirname, 'utf-8');
+    const files = fs.readdirSync(dirname, 'utf-8');
 
-    let fileLen = files.length;
+    const fileLen = files.length;
     if (fileLen !== 0) {
-        for (var i = 0; i < fileLen; i++) {
+        for (let i = 0; i < fileLen; i++) {
             let itemFile = files[i];
             if (isOneLevel) {
                 pNodeData[dirname + '/' + itemFile] = [dirname]
@@ -76,7 +73,7 @@ let outputTree = function (dirname, isOneLevel) {
                 preStr += '├── ';
             }
 
-            let stat = fs.statSync(dirname + '/' + itemFile);
+            const stat = fs.statSync(dirname + '/' + itemFile);
             // 是否是目录
             if (stat.isDirectory()) {
                 dirNum++;
